@@ -77,7 +77,7 @@ def pregunta_01():
     X = df.copy()
 
     # Remueva la columna `type` del DataFrame `X`.
-    X = X.drop("veil-type", axis =1)
+    X = X.drop("type", axis =1)
 
     # Retorne `X` y `y`
     return X, y
