@@ -68,7 +68,7 @@ def pregunta_01():
 
     # Remueva la columna `veil-type` del DataFrame `df`.
     # Esta columna tiene un valor constante y no sirve para la detección de hongos.
-    df.drop("veil_type", axis = 1)
+    df = df.drop("veil-type", axis =1)
 
     # Asigne la columna `type` a la variable `y`.
     y = df["type"]
@@ -122,7 +122,7 @@ def pregunta_03():
     # Importe LogisticRegressionCV
     # Importe OneHotEncoder
     # Importe Pipeline
-    from sklearn.model_selection import LogisticRegressionCV
+    from sklearn.linear_model import LogisticRegressionCV
     from sklearn.preprocessing import OneHotEncoder
     from sklearn.pipeline import Pipeline
 
@@ -134,12 +134,12 @@ def pregunta_03():
     pipeline = Pipeline(
         steps=[
             ("OneHotEncoder", OneHotEncoder()),
-            ("LogisticRegression", LogisticRegressionCV(Cs=10)),
+            ("LogisticRegressionCV", LogisticRegressionCV(Cs=10)),
         ],
     )
 
     # Entrene el pipeline con los datos de entrenamiento.
-    pipeline.LogisticRegression(X_train, y_train)
+    pipeline.fit(X_train, y_train)
 
     # Retorne el pipeline entrenado
     return pipeline
@@ -162,12 +162,12 @@ def pregunta_04():
     # Evalúe el pipeline con los datos de entrenamiento usando la matriz de confusion.
     cfm_train = confusion_matrix(
         y_true=y_train,
-        y_pred=pipeline.prediction(X_train),
+        y_pred=pipeline.predict(X_train),
     )
 
     cfm_test = confusion_matrix(
         y_true=y_test,
-        y_pred=pipeline.prediction(X_test),
+        y_pred=pipeline.predict(X_test),
     )
 
     # Retorne la matriz de confusion de entrenamiento y prueba
